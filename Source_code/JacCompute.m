@@ -1,15 +1,16 @@
-function jac = JacCompute(T, DOF, config)
+function jac = JacCompute(T, psm)
 
 
-jac = sym(zeros(6, DOF));
-for i = 1:DOF
+jac = zeros(6, psm.DOF);
+for i = 1:psm.DOF
     dis_vec = T(1:3, 4, end) - T(1:3, 4, i);
-    jac(1:3, i) = cross(T(1:3, 3, i), dis_vec);
 
-    if 'r' == config(i, 1)
+    if 1 == psm.link(i).type
         thou = 1;
-    elseif 'p' == config(i, 1)
+        jac(1:3, i) = cross(T(1:3, 3, i), dis_vec);
+    elseif 2 == psm.link(i).type
         thou = 0;
+        jac(1:3, i) = T(1:3, 3, i);
     else
         fprintf('Incorrect Link Type!!');
     end

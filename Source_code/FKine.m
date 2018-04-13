@@ -1,15 +1,24 @@
 %forward Kinematics
-function T = FKine(psm_config, DOF, tip)
+function T = FKine(psm, q)
 
-T = repmat(sym(zeros(4)), 1, 1, DOF + 1);
+T = repmat(zeros(4), 1, 1, psm.DOF + 1);
 temp = eye(4);
+lk = psm.link;
 
-for i = 1:1:DOF
-    temp = temp * SetFrame(psm_config(i, 2:5));
+for i = 1:psm.DOF
+    
+    if 1 == lk(i).type
+        temp = temp * SetFrame([lk(i).a, lk(i).alpha,...
+                                lk(i).d, lk(i).theta + q(i)]);
+    elseif 2 == lk(i).type
+        temp = temp * SetFrame([lk(i).a, lk(i).alpha,...
+                                lk(i).d + q(i), lk(i).theta]);
+    end
+    
     T(:,:,i) = temp;
 end
 
-T(:,:,DOF + 1) = temp * SetFrame(tip);
+T(:,:,psm.DOF + 1) = temp * SetFrame(psm.tip);
 
 end
     

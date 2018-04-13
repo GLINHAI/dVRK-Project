@@ -24,5 +24,6 @@ function psm = PsmArmModel()
         psm.link(i).d = psm.DH(i,4);
         psm.link(i).theta = psm.DH(i,5);
     end
+    psm.tip = [];
     
 end
