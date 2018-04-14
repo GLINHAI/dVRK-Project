@@ -32,9 +32,9 @@ function InvControl(psm_q_initial, psm_x_dsr, psm_xdot_dsr, psm)
             
             if error.dis <= 0.01 && error.th <= 0.01
                 flag = true;
-                PSM_graphical(R_cur, T_cur, i);
+%                 PSM_graphical(R_cur, T_cur, i);
 %                 graphical2(R_cur, T_cur);
-                pause(0.001);
+%                 pause(0.001);
 %                 x = R_cur(:,1);
 %                 y = R_cur(:,2);
 %                 z = R_cur(:,3);
@@ -51,7 +51,7 @@ function InvControl(psm_q_initial, psm_x_dsr, psm_xdot_dsr, psm)
 %                       [T_cur(3), T_cur(3) + z(3)]);
 %                   grid on;
 %                   axis ([-1 2 -1 2 -1 2]);                  
-%                   pause(0.01);
+                  pause(0.01);
                 
 %                 quiver3(T_cur(1), T_cur(2), T_cur(3), x(1), x(2), x(3));
             end
@@ -62,11 +62,11 @@ function InvControl(psm_q_initial, psm_x_dsr, psm_xdot_dsr, psm)
 %             pause(0.1);
         end
     end
-%     k = 1:k;
-%     figure(1)
-%     plot(k, dise, 'LineWidth', 1.5);
-%     axis([-20 2000 -0.015 0.015]);
-%     figure(2);
-%     plot(k, orie, 'LineWidth', 1.5);
-%     axis([-20 2000 -0.015 0.015]);
+    k = 1:k;
+    figure(1)
+    plot(k, dise, 'LineWidth', 1.5);
+    axis([-20 2000 -0.015 0.015]);
+    figure(2);
+    plot(k, orie, 'LineWidth', 1.5);
+    axis([-20 2000 -0.015 0.015]);
 end
