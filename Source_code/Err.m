@@ -16,9 +16,9 @@ function error = Err(T_cur, T_dsr, R_cur, R_dsr)
 %                   R_e(2,1) - R_e(1,2)];
     
 
-    error.ori = 0.5 * [cross(R_cur(:,1), R_dsr(:,1)) +...
+    error.ori = 0.5 * (cross(R_cur(:,1), R_dsr(:,1)) +...
                        cross(R_cur(:,2), R_dsr(:,2)) +...
-                       cross(R_cur(:,3), R_dsr(:,3))];
+                       cross(R_cur(:,3), R_dsr(:,3)));
                  
     ct = 0.5 * (R_e(1,1) + R_e(2,2) + R_e(3,3) - 1);
     if ct >= 1.0
@@ -29,6 +29,6 @@ function error = Err(T_cur, T_dsr, R_cur, R_dsr)
         error.th = acos(ct);
     end
     
-    error.e = [error.dis' error.ori']';
+    error.e = [error.pos' error.ori']';
 
 end

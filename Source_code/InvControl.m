@@ -24,6 +24,7 @@ function InvControl(psm_q_initial, psm_x_dsr, psm_xdot_dsr, psm)
             
             q_dot = jpinv * (psm_xdot_dsr + K * error.e);
             q_cur = q' + q_dot * delta_t;
+            [error.dis; error.th]
             
             if error.dis <=0.01 && error.th <= 0.01
                 flag = true;
