@@ -12,8 +12,13 @@ function psm = PsmArmModel()
     be = deg2rad(90);
     
 
-    psm.DH = [% type      a      alpha      d      theta
-                   1      0          0      0          0];
+    psm.DH = [% type      a    alpha        d    theta
+                   1      0       be        0       be;...
+                   1      0      -be        0      -be;...
+                   2      0       be   -l_RCC        0;...
+                   1      0        0   l_tool        0;...
+                   1      0      -be        0      -be;...
+                   1  l_P2Y      -be        0      -be]; 
                
     psm.DOF = size(psm.DH,1);
     
@@ -25,6 +30,6 @@ function psm = PsmArmModel()
         psm.link(i).theta = psm.DH(i,5);
     end
     
-    psm.tip = [];
+    psm.tip = [0, -be, l_Y2CP, -be];
     
 end
