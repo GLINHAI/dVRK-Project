@@ -20,8 +20,10 @@ classdef teleOp < handle
             
             global mtm psm;
             global mtm_q_pre psm_q_pre; 
+            global i;
 %             global dt;
             dt = 0.001;
+            i = 0;
             mtm_q_pre = mtm_q_initial;
             psm_q_pre = psm_q_initial;
             mtm = MtmArmModel();
@@ -33,7 +35,8 @@ classdef teleOp < handle
         function  [psm_q,tracking_err] = run(obj, mtm_q)
 
             global mtm psm;
-            global mtm_q_pre psm_q_pre; 
+            global mtm_q_pre psm_q_pre;
+            global i;
 %             global dt;
             
             [psm_x_dsr, psm_xdot_dsr] = DsrCompute(mtm, mtm_q_pre, mtm_q);
