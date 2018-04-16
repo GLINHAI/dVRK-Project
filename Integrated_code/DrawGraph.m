@@ -1,7 +1,7 @@
-function graphical2(psm_q)
+function DrawGraph(psm, psm_q)
 %     subplot(1,2,1)
     % plot PSM
-    T_psm = FKine(psm_q);
+    T_psm = FKine(psm, psm_q);
     R = T_psm(1:3,1:3,end);
     T = T_psm(1:3,4,end);
     trans_homo = rt2tr(R, T);
@@ -16,24 +16,25 @@ function graphical2(psm_q)
                  [psm_base(3,4), T(3)], 'Color', 'k',...
                                         'LineWidth', 2);
     hold on;
-%     patch([-0.5,0.5,0.5,-0.5],...
-%           [0.5,0.5,-0.5,-0.5],...
-%           [0,0,0,0],...
-%           [0.859,0.859,0.859]);
-%     hold on;
-%     trplot(psm_base,'length',1,'arrow','width', 1.5,'thick',2,'rgb');
-%     hold on;
-%     plot_end = trplot(trans_homo, 'length', 1,...
-%                                   'arrow',...
-%                                   'width', 1.5,...
-%                                   'thick', 2,...
-%                                   'rgb');
+    patch([-0.5,0.5,0.5,-0.5],...
+          [0.5,0.5,-0.5,-0.5],...
+          [0,0,0,0],...
+          [0.859,0.859,0.859]);
+    hold on;
+    base_plot = trplot(psm_base,'length',1,'arrow','width', 1.5,'thick',2,'rgb');
+    hold on;
+    plot_end = trplot(trans_homo, 'length', 1,...
+                                  'arrow',...
+                                  'width', 1.5,...
+                                  'thick', 2,...
+                                  'rgb');
 %     
-%     delete(plot_end);
-%     delete(link);
+    delete(plot_end);
+    delete(base_plot);
+    delete(link);
     grid on;
     axis([-3 3 -3 3 -3 3]);
-  
+    pause(0.001);
 %     subplot(1,2,2)
 %     % plot MTM
 %     [R_mtm,t_mtm] = tr2rt(T_mtm);
