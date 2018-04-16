@@ -1,5 +1,5 @@
 clear;
-% clc;
+clc;
 psm_q_initial = [0 0 0.18 0 0 0]';
 mtm_q_initial = deg2rad([0 0 0 -42.299 90 0 137.701])';
 tele = teleOp(mtm_q_initial,psm_q_initial);
