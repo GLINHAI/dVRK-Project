@@ -1,4 +1,4 @@
-function psm_q = InvControl(psm_q_pre, psm_x_dsr, psm_xdot_dsr, psm)
+function [psm_q, tracking_error] = InvControl(psm_q_pre, psm_x_dsr, psm_xdot_dsr, psm)
 
     for i = 1:length(psm_q_pre)
         q(i) = psm_q_pre(i);
@@ -17,7 +17,7 @@ function psm_q = InvControl(psm_q_pre, psm_x_dsr, psm_xdot_dsr, psm)
             
         q_dot = jpinv * (psm_xdot_dsr + K * error.e);
         q_cur = q' + q_dot * delta_t;
-        [error.dis; error.th];
+        tracking_error = [error.dis; error.th];
         if error.dis <= 0.01 && error.th <= 0.01
             break;
         end       
