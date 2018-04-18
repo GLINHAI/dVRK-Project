@@ -5,6 +5,7 @@ classdef teleOp < handle
     psm_js_publisher;
     jointStateMsg;
     dt = 0.001;
+    tStart;
     
 
   end
@@ -32,17 +33,16 @@ classdef teleOp < handle
         end
 
         
-        function  [psm_q,tracking_err] = run(obj, mtm_q)
+        function  [psm_q, tracking_err] = run(obj, mtm_q)
 
             global mtm psm;
             global mtm_q_pre psm_q_pre;
-            global i;
 %             global dt;
             
             [psm_x_dsr, psm_xdot_dsr] = DsrCompute(mtm, mtm_q_pre, mtm_q);
             psm_q = InvControl(psm_q_pre, psm_x_dsr, psm_xdot_dsr, psm);
 %             DrawGraph(psm, psm_q);
-            PSM_graphical(psm, psm_q);
+            PSM_graphical(psm_q);
                
             psm_q_pre = psm_q;
             mtm_q_pre = mtm_q;
