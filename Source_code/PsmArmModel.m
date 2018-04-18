@@ -30,6 +30,6 @@ function psm = PsmArmModel()
         psm.link(i).theta = psm.DH(i,5);
     end
     
-    psm.tip = [0, -be, l_Y2CP, -be];
+    psm.tip = [0, -be, l_Y2CP, be];
     
 end
